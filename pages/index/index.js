@@ -1,5 +1,9 @@
 //index.js
 //获取应用实例
+import{
+  formatTime
+}from "../../utils/util.js"
+
 const app = getApp()
 
 Page({
