@@ -64,6 +64,13 @@
         {
           "name": "pages/Todo/Todo",
           "pathName": "pages/Todo/Todo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/anniversary/anniver",
+          "pathName": "pages/anniversary/anniver",
+          "query": "",
           "scene": null
         }
       ]

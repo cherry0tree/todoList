@@ -2,7 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/Todo/Todo"
+    "pages/Todo/Todo",
+    "pages/anniversary/detail/detail",
+    "pages/anniversary/anniver",
+    "pages/anniversary/new/newAnniver"
   ],
   "window": {
     "backgroundTextStyle": "light",

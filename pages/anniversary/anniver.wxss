@@ -1,0 +1,29 @@
+/* pages/anniversary/anniver.wxss */
+.addAnniver{
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80rpx;
+  height: 80rpx;
+  color: #fff;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 70rpx;
+  background-color: rgba(92, 194, 143,0.9);
+  border-radius: 5px;
+}
+.showTip{
+  text-align: center;
+  width: 80%;
+  margin: 20rpx auto;
+  font-size: 40rpx;
+  color: #686767;
+}
+.wrapper{
+  width: 100%;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}

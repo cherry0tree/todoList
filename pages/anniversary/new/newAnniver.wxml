@@ -1,0 +1,16 @@
+<!--pages/anniversary/new/newAnniver.wxml-->
+<scroll-view scroll-y="true">
+  <view class="wrapper">
+    <view class="input-view">
+      <input type="text" class="input" placeholder="记录您的事件" bindinput="inputEvent" />
+    </view>
+    <view class="set-view">
+      <view class="time-select-view">
+        <picker mode="date" value="{{date}}" start="1990-01-01" end="{{date}}" bindchange="bindDateChange">
+          设置起始时间：{{date}}
+        </picker>
+      </view>
+      <view class="button" bindtap="saveEvent">保存</view>
+    </view>
+  </view>
+</scroll-view>
