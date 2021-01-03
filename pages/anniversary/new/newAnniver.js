@@ -3,7 +3,6 @@ import {
   formatTime
 } from "../../../utils/util.js"
 
-
 Page({
 
   /**
@@ -23,14 +22,23 @@ Page({
     var pageArray = getCurrentPages()
     console.log(pageArray)
     var txt = this.data.inputTxt
-    console.log(txt)
-    var anniver = {"text": txt}
+    //handle date
+    var date=this.data.date
+    var aDate=date.split("-")
+    var oDate=new Date(aDate[1]+"-"+aDate[2]+"-"+aDate[0])
+    let curDate=new Date()
+    let saveDate = formatTime(new Date())
+    let id = curDate.getTime()
+    var days=parseInt(Math.abs(curDate-oDate)/(1000*60*60*24))
+    var anniver={"date":date,'text':txt,'time':days,'saveDate':saveDate}
+
     wx.navigateBack({
       success: function(res){
        var anniversary = pageArray[pageArray.length - 2].data.Anniversary
        anniversary.splice(0,0,anniver)
        pageArray[pageArray.length-2].setData({
-        Anniversary: anniversary
+        Anniversary: anniversary,
+        showTip: false
        })
        wx.setStorage({
          key: 'Anniversary',

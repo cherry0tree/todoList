@@ -9,7 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    "Anniversary":[]
+    "Anniversary":[],
+    "newDate": '',
+    'showTip': true
   },
   addAnniver: function(){
     wx.navigateTo({
