@@ -72,6 +72,12 @@
           "pathName": "pages/anniversary/anniver",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/anniversary/detail/detail",
+          "pathName": "pages/anniversary/detail/detail",
+          "query": "",
+          "scene": null
         }
       ]
     }

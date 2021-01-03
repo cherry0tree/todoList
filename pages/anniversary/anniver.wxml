@@ -4,7 +4,7 @@
   <view class="showTip" wx:if="{{showTip}}">记录你的第一个纪念日吧!</view>
   <scroll-view scroll-y="true" class='wrapper'>
     <view wx:for="{{Anniversary}}" wx:key="item">
-      <view class="anniver-view" bindtap='clickAnniver'>
+      <view class="anniver-view" bindtap='clickAnniver' data-anniver-id='{{item.id}}'>
         <view class="event-start">
           <view style="font-size:40rpx; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">{{item.text}}</view>
           <view style="font-size:32rpx; color: #686767;">起始日: {{item.date}}</view>

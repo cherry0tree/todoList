@@ -18,11 +18,46 @@ Page({
       url: 'new/newAnniver'
     })
   },
+  clickAnniver: function(e) {
+    var anniver
+    var anniverId = e.currentTarget.dataset.anniverId
+    console.log(this.data.Anniversary)
+    console.log(e)
+    for(let i = 0; i < this.data.Anniversary.length;i++) {
+      if(this.data.Anniversary[i].id === anniverId){
+        anniver = this.data.Anniversary[i]
+        break
+      }
+    }
+    console.log(JSON.stringify(anniver))
+    wx.navigateTo({
+      url: 'detail/detail?detail=' + JSON.stringify(anniver)
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var Anniversary = wx.getStorageSync("Anniversary")
+    if(typeof Anniversary!=='object'){
+      Anniversary=[]
+    }
+    var curDate=formatTime(new Date())
+    if (Anniversary.length !== 0){
+      for(let i=0;i<Anniversary.length;i++){
+        if(curDate!==Anniversary[i].saveDate){
+          let cur = new Date()
+          let oDate = new Date(Anniversary[i].date)
+          let days = parseInt(Math.abs(cur - oDate) / (1000 * 60 * 60 * 24))
+          Anniversary[i].time=days
+          Anniversary[i].saveDate = curDate
+        }
+      }
+    }
+    this.setData({
+      Anniversary: Anniversary,
+      showTip:Anniversary.length===0?true:false
+    })    
   },
 
   /**

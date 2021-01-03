@@ -1,1 +1,34 @@
 /* pages/anniversary/detail/detail.wxss */
+.wrapper{
+  width: 100%;
+  margin-top: 40rpx;  
+}
+.input{
+  width: 80%;
+  margin: 0 auto;
+  padding: 10rpx;
+  border-bottom: 1px solid #aaa;
+}
+.set-view{
+  width: 80%;
+  margin: 0 auto;
+}
+.set-view .time-select-view{
+  padding-left:10rpx; 
+  margin-top: 40rpx; 
+  margin-bottom: 40rpx;
+}
+.del-button,.save-button{
+  text-align: center;
+  font-size: 40rpx;
+  padding: 20rpx 20rpx;
+  color: white;
+  border-radius: 5px;
+}
+.del-button{
+  background-color: red
+}
+.save-button{
+  margin-bottom: 30rpx;
+  background-color: rgb(105, 173, 228)
+}

@@ -30,7 +30,7 @@ Page({
     let saveDate = formatTime(new Date())
     let id = curDate.getTime()
     var days=parseInt(Math.abs(curDate-oDate)/(1000*60*60*24))
-    var anniver={"date":date,'text':txt,'time':days,'saveDate':saveDate}
+    var anniver={"date":date,'text':txt,'time':days,'saveDate':saveDate, 'id': id}
 
     wx.navigateBack({
       success: function(res){

@@ -1,2 +1,17 @@
 <!--pages/anniversary/detail/detail.wxml-->
-<text>pages/anniversary/detail/detail.wxml</text>
+<scroll-view scroll-y="true">
+  <view class="wrapper">
+    <view class="input">
+      <input type="text" value="{{event}}" bindinput='inputEvent' />
+    </view>
+    <view class='set-view'>
+      <view class='time-select-view'>
+        <picker mode="date" value="{{date}}" start="1990-01-01" end="{{date}}" bindchange="bindDateChange">
+          <view>起始日: {{date}}</view>
+        </picker>
+      </view>
+      <view class='save-button' bindtap='saveEvent'>保存</view>
+      <view class='del-button' bindtap='delEvent'>删除</view>
+    </view>    
+  </view>
+</scroll-view>

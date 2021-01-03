@@ -5,16 +5,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    'event': '',
+    'date': ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    var op=JSON.parse(options.detail)
+    console.log(op.id)
+    this.setData({
+      event: op.text,
+      date: op.date,
+      detailId: op.id
+    })
+  },
+  saveEvent: function() {
 
   },
+  delEvent: function(){
 
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
