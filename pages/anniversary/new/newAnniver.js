@@ -22,10 +22,10 @@ Page({
     var pageArray = getCurrentPages()
     console.log(pageArray)
     var txt = this.data.inputTxt
-    //handle date
+    //handle date, this is to record the time between user enter and exit
     var date=this.data.date
     var aDate=date.split("-")
-    var oDate=new Date(aDate[1]+"-"+aDate[2]+"-"+aDate[0])
+    var oDate=new Date(aDate[0])
     let curDate=new Date()
     let saveDate = formatTime(new Date())
     let id = curDate.getTime()
@@ -52,6 +52,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(new Date())
+    console.log(formatTime(new Date()))
     var today = formatTime(new Date())
     this.setData({
       date: today

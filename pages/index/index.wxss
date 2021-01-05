@@ -1,21 +1,22 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.container{
+  background-image: url(https://t1.picb.cc/uploads/2018/01/30/U3Twu.jpg);
+  color: #fff;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.today-weather-container{
+  width: 96%;  
+  margin: 10rpx auto;
+  box-shadow: 0 0 2px #aaa inset;
 }
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
+.today-weather-container .location{
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  max-width: 220rpx;
+  font-size: 27rpx;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 2px #aaa inset;
+  border-radius: 5px;
+  padding: 10rpx;
 }
