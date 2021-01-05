@@ -6,6 +6,7 @@ import{
 
 const app = getApp()
 const QQMapWX = require('../../utils/qqmap-wx-jssdk')
+var cityArray=require("../../utils/citys.js")
 var today=formatTime(new Date())
 var picUrl = {
   '紫外线指数': "https://t1.picb.cc/uploads/2018/02/03/sI6Bc.png",
@@ -45,10 +46,39 @@ var picUrl = {
 Page({
   data: {
     'province': "",//当前省
-    'city': ""//当前城市
+    'city': "",//当前城市
+    'district': "",//当前区
+    "selectCityView":false,
+    "picUrl": picUrl,
+    'curWeather': null,//实时天气
+    'weatherInfo': null,//7天的天气信息
+    // picker
+    "provinces":[],
+    'cities':[],
+    'districts':[],    
   },
   onLoad: function () {
     var that = this
+    cityArray.init(that)
+    var cityInfo=that.data.cityInfo
+    const provinces=[]
+    const cities=[]
+    const districts=[]
+    for(var i=0;i<cityInfo.length;i++){
+      provinces.push(cityInfo[i].name)
+    }
+    for(var i=0;i<cityInfo[0].sub.length;i++){
+      cities.push(cityInfo[0].sub[i].name)
+    }
+    for(var i=0;i<cityInfo[0].sub[0].sub.length;i++){
+      districts.push(cityInfo[0].sub[0].sub[i].name)
+    }
+    that.setData({
+      'provinces':provinces,
+      'cities':cities,
+      'districts':districts
+    })
+    
     wx.getLocation({
       type:'wgs84',
       success: function(res){
@@ -58,8 +88,10 @@ Page({
         that.getCityInfo(longitude, latitude)
       }
     })
+
   },
   getCityInfo: function(longitude, latitude){
+    var that = this
     let qqmapsdk = new QQMapWX({
       key: 'MFLBZ-P7XW2-DAWUS-CDLB6-D6KB6-CDBQV'
     })
@@ -69,7 +101,64 @@ Page({
       location: {latitude,longitude},
       success(res) {
         console.log(res)
+        var curProvince = res.result.ad_info.province 
+        var curCity     = res.result.ad_info.city
+        var curDistrict = res.result.ad_info.district
+        that.setData({
+          province: curProvince,
+          city: curCity,
+          district: curDistrict
+        })
+        that.getWeatherInfo(curCity, function(data){
+          that.setData({
+            weatherInfo:data.HeWeather6[0].daily_forecast
+          })       
+        })
+        that.getCurWeatherInfo(curCity, function(data){
+          that.setData({
+            curWeather: data.HeWeather6[0].now
+          })          
+        })
       }
+    })
+  },
+  addCity: function(){
+    var show = this.data.selectCityView
+    if(show===true){
+      this.setData({
+        selectCityView:false
+      })
+    }else{
+      this.setData({
+        selectCityView: true
+      })
+    }
+  },
+  cancel:function(){
+    this.setData({
+      selectCityView: false
+    })
+  },
+  getWeatherInfo: function(city,callback){
+    console.log(city)
+    wx.request({
+      url: 'https://free-api.heweather.com/s6/weather/forecast?location=city&key=5a27e7497fb849729ced5631fe9260cd',
+      success:function(res){
+        console.log(res)
+        callback(res.data)
+      },
+      fail:function(){
+        console.log("fail")
+      }      
+    })
+  },
+  getCurWeatherInfo: function(city, callback){
+    wx.request({
+      url: "https://free-api.heweather.com/s6/weather/now?location=" + city + "&key=5a27e7497fb849729ced5631fe9260cd",
+      success: function (res) {
+        console.log(res)
+        callback(res.data)
+      }      
     })
   }
 })
