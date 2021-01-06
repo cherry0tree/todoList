@@ -18,6 +18,28 @@
     "desc": "您的位置信息将用于小程序位置接口的效果展示"
     }
   },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/weatherunselected.png",
+        "selectedIconPath": "image/weather.png",
+        "text": "天气"
+      },
+      {
+        "pagePath": "pages/Todo/Todo",
+        "text": "Todo",
+        "iconPath": "image/todo-o.png",
+        "selectedIconPath": "image/Todo.png"
+      },
+      {
+        "pagePath": "pages/anniversary/anniver",
+        "text": "Anniversary",
+        "iconPath": "image/date.png",
+        "selectedIconPath": "image/date-selected.png"        
+      }
+    ]
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
