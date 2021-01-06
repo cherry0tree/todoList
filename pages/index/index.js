@@ -55,12 +55,14 @@ Page({
     // picker
     "provinces":[],
     'cities':[],
-    'districts':[],    
+    'districts':[],
+    'values':[0,0,0],
   },
   onLoad: function () {
     var that = this
     cityArray.init(that)
     var cityInfo=that.data.cityInfo
+    //需要初始化picker
     const provinces=[]
     const cities=[]
     const districts=[]
@@ -73,12 +75,15 @@ Page({
     for(var i=0;i<cityInfo[0].sub[0].sub.length;i++){
       districts.push(cityInfo[0].sub[0].sub[i].name)
     }
+    console.log(provinces)
+    console.log(cities)
+    console.log(districts)
     that.setData({
       'provinces':provinces,
       'cities':cities,
       'districts':districts
     })
-    
+
     wx.getLocation({
       type:'wgs84',
       success: function(res){
@@ -139,10 +144,68 @@ Page({
       selectCityView: false
     })
   },
+  confirm:function(){
+    var that = this
+    var province=this.data.provinces[this.data.values[0]]
+    var city=this.data.cities[this.data.values[1]]
+    var district = this.data.districts[this.data.values[2]]
+    this.setData({
+      province:province,
+      city:city,
+      district: district,
+      selectCityView: false
+    })
+    that.getCurWeatherInfo(city, function(data){
+      that.setData({
+        curWeather: data.HeWeather6[0].now
+      })          
+    })
+    that.getWeatherInfo(city, function(data){
+      that.setData({
+        weatherInfo:data.HeWeather6[0].daily_forecast
+      })       
+    })
+  },
+  bindChange:function(e){
+    var cityInfo=this.data.cityInfo
+    var value=e.detail.value
+    var values=this.data.values
+    if(value[0]!=values[0]){
+      let cities=[],districts=[]
+      // when value[0] changed 遍历value[0]对应的city和district
+      for (let i = 0; i < cityInfo[value[0]].sub.length; i++) {
+        cities.push(cityInfo[value[0]].sub[i].name)
+      }
+      for (let i = 0; i < cityInfo[value[0]].sub[0].sub.length; i++) {
+        districts.push(cityInfo[value[0]].sub[0].sub[i].name)
+      }
+      this.setData({
+        cities:cities,
+        districts:districts,
+        values:value
+      })
+    }
+
+    if(value[1]!=values[1]) {
+      let districts = []
+      for (let i = 0; i < cityInfo[value[0]].sub[value[1]].sub.length; i++) {
+        districts.push(cityInfo[value[0]].sub[value[1]].sub[i].name)
+      }
+      this.setData({
+        districts: districts,
+        values:value
+      })
+    }
+    if(value[2]!=values[2]){
+      this.setData({
+        values: value,
+      })
+    }
+  },
   getWeatherInfo: function(city,callback){
     console.log(city)
     wx.request({
-      url: 'https://free-api.heweather.com/s6/weather/forecast?location=city&key=5a27e7497fb849729ced5631fe9260cd',
+      url: "https://free-api.heweather.com/s6/weather/forecast?location=" + city + "&key=5a27e7497fb849729ced5631fe9260cd",
       success:function(res){
         console.log(res)
         callback(res.data)

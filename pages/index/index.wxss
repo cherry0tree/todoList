@@ -1,10 +1,14 @@
 /**index.wxss**/
+text{
+  display: block;
+}
 .container{
+  padding: 0;
   background-image: url(https://t1.picb.cc/uploads/2018/01/30/U3Twu.jpg);
   color: #fff;
 }
 .today-weather-container{
-  width: 96%;  
+  width: 100%;
   margin: 10rpx auto;
   box-shadow: 0 0 2px #aaa inset;
 }
@@ -20,7 +24,7 @@
   border-radius: 5px;
   padding: 10rpx;
 }
-.toggle-button{
+.today-weather-container .toggle-button{
   text-align: center;
   position: absolute;
   top: 20rpx;
@@ -30,4 +34,84 @@
   padding: 10rpx;
   font-size: 30rpx;
   max-width: 300rpx;
+}
+.current-weather-image-container{
+  padding: 10rpx 10rpx 0 10rpx;
+}
+.current-weather-image{
+  display: block;
+  width: 200rpx;
+  height: 200rpx;
+  margin-top: 60rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20rpx;
+}
+.tmp-condtxt{
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 50rpx;
+}
+.hum_prec_wind{
+  display: flex;
+}
+.humidity,.precipitation,.wind{
+  min-width: 220rpx;
+  padding: 10rpx;
+  text-align: center;
+  justify-content: center;
+  line-height: 60rpx;
+}
+/* 未来7天 */
+.future-weather-container{
+  margin: 20rpx auto;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.forecast{
+  display: flex;
+  margin-top: 30rpx;
+}
+.weather-overview{
+  text-align: center;
+  min-width: 200rpx;
+  line-height: 56rpx;
+  font-size: 28rpx;
+  margin: 0 10rpx;
+  padding: 10rpx;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 2px #aaa inset;
+}
+.weatherImage{
+  width: 90rpx;
+  height: 90rpx;  
+}
+/* change city */
+.select-city{
+  color: #000;
+  position: fixed;
+  width: 100%; 
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10rpx;
+  box-shadow: 0 0 2px #111 inset;
+}
+.city-picker-view{
+  width: 100%;
+  height: 300rpx;
+  margin: 0 auto;
+}
+.city-picker-column{
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 500;  
+}
+.city-header{
+  display: flex;
+  font-size: 34rpx;
+  justify-content: space-between;
+  font-weight: 500;
+  padding: 20rpx;
+  border-bottom: 1px solid #aaa;
 }

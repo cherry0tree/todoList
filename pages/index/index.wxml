@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="container">
+  <!-- today wheather -->
   <view class="today-weather-container">
     <view class="location">
       <view>{{province}}{{city}}{{district}}</view>
@@ -12,7 +13,6 @@
       <text>{{curWeather.cond_txt}}</text>
       <text>{{curWeather.tmp}}℃</text>
     </view>
-
     <view class='hum_prec_wind'>
       <view class='humidity'>
           <text>相对湿度</text>
@@ -27,36 +27,37 @@
           <text>{{curWeather.wind_spd}} km/h</text>
         </view>
     </view>
-
-    <!-- feature wheather -->
-    <scroll-view class="future-weather-container" scroll-x="true">
-      <view class='forecast'>
-        <view class="weather-overview" wx:for="{{weatherInfo}}" wx:key="item">
-          <text>{{item.date}}</text>
-          <text>{{item.cond_txt_d}}</text>
-          <image class='weatherImage' src='{{picUrl[item.cond_txt_d]}}'></image>
-          <text>{{item.tmp_min}}℃ ~ {{item.tmp_max}}℃</text>          
-        </view>
-      </view>
-    </scroll-view>
-
-    <!-- changeCity -->
-    <view class="select-city" wx:if="{{selectCityView}}">
-      <view class="city-header">
-        <view class='city-cancel' bindtap='cancel'>取消</view>
-        <view class='city-confirm' bindtap='confirm'>确定</view>
-      </view>
-      <picker-view class='city-picker-view' indicator-style="height: 40px;">
-        <picker-view-column>  
-          <view class='city-picker-column' wx:for="{{provinces}}" wx:key="item" style="line-height: 40px;">{{item}}</view>
-        </picker-view-column>
-        <picker-view-column>  
-          <view class='city-picker-column' wx:for="{{cities}}" wx:key="item" style="line-height: 40px;">{{item}}</view>
-        </picker-view-column>
-        <picker-view-column>  
-          <view class='city-picker-column' wx:for="{{districts}}" wx:key="item" style="line-height: 40px;">{{item}}</view>
-        </picker-view-column>                
-      </picker-view>
-    </view>
   </view>
+
+  <!-- feature wheather -->
+  <scroll-view class="future-weather-container" scroll-x="true">
+    <text>未来7天天气情况</text>
+    <view class='forecast'>
+      <view class="weather-overview" wx:for="{{weatherInfo}}" wx:key="item">
+        <text>{{item.date}}</text>
+        <text>{{item.cond_txt_d}}</text>
+        <image class='weatherImage' src='{{picUrl[item.cond_txt_d]}}'></image>
+        <text>{{item.tmp_min}}℃ ~ {{item.tmp_max}}℃</text>          
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- changeCity -->
+  <view class="select-city" wx:if="{{selectCityView}}">
+    <view class="city-header">
+      <view bindtap='cancel'>取消</view>
+      <view bindtap='confirm'>确定</view>
+    </view>
+    <picker-view class='city-picker-view' indicator-style="height: 40px;" bindchange="bindChange">
+      <picker-view-column>  
+        <view class='city-picker-column' wx:for="{{provinces}}" wx:key="item" style="line-height: 40px;">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>  
+        <view class='city-picker-column' wx:for="{{cities}}" wx:key="item" style="line-height: 40px;">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>  
+        <view class='city-picker-column' wx:for="{{districts}}" wx:key="item" style="line-height: 40px;">{{item}}</view>
+      </picker-view-column>                
+    </picker-view>
+  </view>  
 </view>
