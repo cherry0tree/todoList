@@ -70,10 +70,10 @@ Page({
         if(this.data.todoList[i].completed === false) {
           console.log('completed false --E')
           this.data.todoList[i].completed = true
-          this.data.uncompletedNum -= 1       
+          this.data.uncompletedNum -= 1
         } else {
           this.data.todoList[i].completed=false
-          this.data.uncompletedNum += 1          
+          this.data.uncompletedNum += 1
         }
       }
       this.setData({

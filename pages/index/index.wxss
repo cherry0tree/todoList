@@ -70,7 +70,7 @@ text{
 }
 .forecast{
   display: flex;
-  margin-top: 30rpx;
+  margin-top: 60rpx;
 }
 .weather-overview{
   text-align: center;
